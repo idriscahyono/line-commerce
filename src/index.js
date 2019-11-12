@@ -11,6 +11,8 @@ const config = {
     channelSecret: process.env.CHANNEL_SECRET || defaultSecret,
 };
 
+let baseURL = process.env.BASE_URL;
+
 const client = new line.Client(config);
 const app = express();
 
@@ -83,7 +85,7 @@ function handleEvent(event) {
 }
 
 function handleText(message, replyToken, source) {
-    const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
+    const buttonsImageURL = `${baseURL}1040.jpg`;
 
     switch (message.text) {
         case 'profile':

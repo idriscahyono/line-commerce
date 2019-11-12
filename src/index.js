@@ -31,7 +31,7 @@ app.post("/webhook", line.middleware(config), function (req, res) {
 
 function handleEvent(event) {
     if (event.message.text == "hai") {
-        const echo = {
+        return client.replyMessage(event.replyToken, {
             "type": "carousel",
             "contents": [{
                     "type": "bubble",
@@ -198,8 +198,7 @@ function handleEvent(event) {
                     }
                 }
             ]
-        };
-        return client.replyMessage(event.replyToken, echo);
+        });
     }
     const echo = {
         type: 'text',

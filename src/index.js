@@ -11,6 +11,7 @@ const config = {
     channelSecret: process.env.CHANNEL_SECRET || defaultSecret,
 };
 
+const client = new line.Client(config);
 const app = express();
 
 

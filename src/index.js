@@ -30,12 +30,16 @@ app.post("/webhook", line.middleware(config), function (req, res) {
 });
 
 function handleEvent(event) {
-    if (event.type !== 'message' || event.message.type !== 'text') {
-        return Promise.resolve(null);
+    if (event.message.text == "hai") {
+        const echo = {
+            type: 'text',
+            text: "Halo Juga"
+        };
+        return client.replyMessage(event.replyToken, echo);
     }
     const echo = {
         type: 'text',
-        text: event.message.text
+        text: "Siapa Ya"
     };
 
     return client.replyMessage(event.replyToken, echo);

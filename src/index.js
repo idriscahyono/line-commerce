@@ -161,6 +161,124 @@ function handleText(message, replyToken, source) {
                         },
                     }
                 )
+            case 'carousel':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'Carousel alt text',
+                        template: {
+                            type: 'carousel',
+                            columns: [{
+                                    thumbnailImageUrl: buttonsImageURL,
+                                    title: 'hoge',
+                                    text: 'fuga',
+                                    actions: [{
+                                            label: 'Go to line.me',
+                                            type: 'uri',
+                                            uri: 'https://line.me'
+                                        },
+                                        {
+                                            label: 'Say hello1',
+                                            type: 'postback',
+                                            data: 'hello'
+                                        },
+                                    ],
+                                },
+                                {
+                                    thumbnailImageUrl: buttonsImageURL,
+                                    title: 'hoge',
+                                    text: 'fuga',
+                                    actions: [{
+                                            label: 'hello2',
+                                            type: 'postback',
+                                            data: 'hello',
+                                            text: 'hello'
+                                        },
+                                        {
+                                            label: 'Say message',
+                                            type: 'message',
+                                            text: 'Rice=米'
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    }
+                );
+            case 'image carousel':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'Image carousel alt text',
+                        template: {
+                            type: 'image_carousel',
+                            columns: [{
+                                    imageUrl: buttonsImageURL,
+                                    action: {
+                                        label: 'Go to LINE',
+                                        type: 'uri',
+                                        uri: 'https://line.me'
+                                    },
+                                },
+                                {
+                                    imageUrl: buttonsImageURL,
+                                    action: {
+                                        label: 'Say hello1',
+                                        type: 'postback',
+                                        data: 'hello'
+                                    },
+                                },
+                                {
+                                    imageUrl: buttonsImageURL,
+                                    action: {
+                                        label: 'Say message',
+                                        type: 'message',
+                                        text: 'Rice'
+                                    },
+                                },
+                                {
+                                    imageUrl: buttonsImageURL,
+                                    action: {
+                                        label: 'datetime',
+                                        type: 'datetimepicker',
+                                        data: 'DATETIME',
+                                        mode: 'datetime',
+                                    },
+                                },
+                            ]
+                        },
+                    }
+                );
+            case 'datetime':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'Datetime pickers alt text',
+                        template: {
+                            type: 'buttons',
+                            text: 'Select date / time !',
+                            actions: [{
+                                    type: 'datetimepicker',
+                                    label: 'date',
+                                    data: 'DATE',
+                                    mode: 'date'
+                                },
+                                {
+                                    type: 'datetimepicker',
+                                    label: 'time',
+                                    data: 'TIME',
+                                    mode: 'time'
+                                },
+                                {
+                                    type: 'datetimepicker',
+                                    label: 'datetime',
+                                    data: 'DATETIME',
+                                    mode: 'datetime'
+                                },
+                            ],
+                        },
+                    }
+                );
             case 'menu':
                 return client.replyMessage(
                     replyToken, {
@@ -233,7 +351,6 @@ function handleText(message, replyToken, source) {
                             }
                         }]
                     }
-
                 )
             default:
                 console.log(`Echo message to ${replyToken}: ${message.text}`);

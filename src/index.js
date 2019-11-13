@@ -121,7 +121,7 @@ function handleText(message, replyToken, source) {
                         template: {
                             type: 'carousel',
                             columns: [{
-                                    thumbnailImageUrl: 'https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/8/110114/110114_e8af9e0f-64d8-4ee1-955b-5e11fbddd95a_780_780.jpg',
+                                    thumbnailImageUrl: 'https://toko.sentratani.com/image/cache/catalog/produk/Benih-Panah-Merah-Melon-Gracia-F1-500-Butir-500x500.png',
                                     imageBackgroundColor: '#FFFFFF',
                                     title: 'Benih Melon Hijau',
                                     text: 'Benih melon hijau berkualitas namun hemat untuk skala hobi',
@@ -148,7 +148,7 @@ function handleText(message, replyToken, source) {
                                     ]
                                 },
                                 {
-                                    thumbnailImageUrl: 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/9/23/110114/110114_d3c8beed-d4a4-47ba-8e69-f7779007f523_1080_1080.jpg',
+                                    thumbnailImageUrl: 'https://toko.sentratani.com/image/cache/catalog/Benih%20Cabe%20Rawit%20Hibrida%20F1%20SONAR%20-10%20Gr-500x500.png',
                                     imageBackgroundColor: '#FFFFFF',
                                     title: 'Benih Cabai Rawit',
                                     text: 'Benih Cabai Cabe Rawit berkualitas namun hemat untuk skala hobi',

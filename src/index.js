@@ -121,10 +121,10 @@ function handleText(message, replyToken, source) {
                         template: {
                             type: 'carousel',
                             columns: [{
-                                    thumbnailImageUrl: 'https://ecs7.tokopedia.net/img/cache/700/product-1/2019/3/7/110114/110114_9ad1c192-6258-47e7-af29-104150440f34_1560_1560.jpg',
+                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
                                     imageBackgroundColor: '#FFFFFF',
-                                    title: 'Benih Bunga Kol',
-                                    text: 'Benih bunga kol atau cauliflower dalam kemasan repack, harga 5000 saja. Sangat cocok untuk skala hobi. Dikemas dalam kemasan aluminium foil untuk menjaga kualitas benih.',
+                                    title: 'this is menu',
+                                    text: 'description',
                                     defaultAction: {
                                         type: 'uri',
                                         label: 'View detail',
@@ -148,10 +148,10 @@ function handleText(message, replyToken, source) {
                                     ]
                                 },
                                 {
-                                    thumbnailImageUrl: 'https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/8/110114/110114_e8af9e0f-64d8-4ee1-955b-5e11fbddd95a_780_780.jpg',
+                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
                                     imageBackgroundColor: '#FFFFFF',
-                                    title: 'Benih Melon Hijau',
-                                    text: 'Benih melon hijau berkualitas namun hemat untuk skala hobi',
+                                    title: 'this is menu',
+                                    text: 'description',
                                     defaultAction: {
                                         type: 'uri',
                                         label: 'View detail',

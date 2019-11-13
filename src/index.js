@@ -164,44 +164,44 @@ function handleText(message, replyToken, source) {
             case 'menu':
                 return client.replyMessage(
                     replyToken, {
-                        type: "carousel",
+                        type: 'carousel',
                         contents: [{
-                            type: "bubble",
+                            type: 'bubble',
                             hero: {
-                                type: "image",
-                                size: "full",
-                                aspectRatio: "20:13",
-                                aspectMode: "cover",
-                                url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png"
+                                type: 'image',
+                                size: 'full',
+                                aspectRatio: '20:13',
+                                aspectMode: 'cover',
+                                url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png'
                             },
                             body: {
-                                type: "box",
-                                layout: "vertical",
-                                spacing: "sm",
+                                type: 'box',
+                                layout: 'vertical',
+                                spacing: 'sm',
                                 contents: [{
-                                        type: "text",
-                                        text: "Arm Chair, White",
+                                        type: 'text',
+                                        text: 'Arm Chair, White',
                                         wrap: true,
-                                        weight: "bold",
-                                        size: "xl"
+                                        weight: 'bold',
+                                        size: 'xl'
                                     },
                                     {
-                                        type: "box",
-                                        layout: "baseline",
+                                        type: 'box',
+                                        layout: 'baseline',
                                         contents: [{
-                                                type: "text",
-                                                text: "$49",
+                                                type: 'text',
+                                                text: '$49',
                                                 wrap: true,
-                                                weight: "bold",
-                                                size: "xl",
+                                                weight: 'bold',
+                                                size: 'xl',
                                                 flex: 0
                                             },
                                             {
-                                                type: "text",
-                                                text: ".99",
+                                                type: 'text',
+                                                text: '.99',
                                                 wrap: true,
-                                                weight: "bold",
-                                                size: "sm",
+                                                weight: 'bold',
+                                                size: 'sm',
                                                 flex: 0
                                             }
                                         ]
@@ -209,24 +209,24 @@ function handleText(message, replyToken, source) {
                                 ]
                             },
                             footer: {
-                                type: "box",
-                                layout: "vertical",
-                                spacing: "sm",
+                                type: 'box',
+                                layout: 'vertical',
+                                spacing: 'sm',
                                 contents: [{
-                                        type: "button",
-                                        style: "primary",
+                                        type: 'button',
+                                        style: 'primary',
                                         action: {
-                                            type: "uri",
-                                            label: "Add to Cart",
-                                            uri: "https://linecorp.com"
+                                            type: 'uri',
+                                            label: 'Add to Cart',
+                                            uri: 'https://linecorp.com'
                                         }
                                     },
                                     {
-                                        type: "button",
+                                        type: 'button',
                                         action: {
-                                            type: "uri",
-                                            label: "Add to wishlist",
-                                            uri: "https://linecorp.com"
+                                            type: 'uri',
+                                            label: 'Add to wishlist',
+                                            uri: 'https://linecorp.com'
                                         }
                                     }
                                 ]

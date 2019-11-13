@@ -130,6 +130,7 @@ function handleText(message, replyToken, source) {
                                         label: 'Add To Chart',
                                         uri: 'http://example.com/page/123'
                                     },
+                                    actions: [{}]
                                 },
                                 {
                                     thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
@@ -141,6 +142,7 @@ function handleText(message, replyToken, source) {
                                         label: 'Add To Chart',
                                         uri: 'http://example.com/page/123'
                                     },
+                                    actions: [{}]
                                 },
                             ],
                             imageAspectRatio: 'rectangle',

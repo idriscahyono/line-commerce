@@ -121,28 +121,58 @@ function handleText(message, replyToken, source) {
                         template: {
                             type: 'carousel',
                             columns: [{
-                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    thumbnailImageUrl: 'https://ecs7.tokopedia.net/img/cache/700/product-1/2019/3/7/110114/110114_9ad1c192-6258-47e7-af29-104150440f34_1560_1560.jpg',
                                     imageBackgroundColor: '#FFFFFF',
-                                    title: 'this is menu',
-                                    text: 'description',
+                                    title: 'Benih Bunga Kol',
+                                    text: 'Benih bunga kol atau cauliflower dalam kemasan repack, harga 5000 saja. Sangat cocok untuk skala hobi. Dikemas dalam kemasan aluminium foil untuk menjaga kualitas benih.',
                                     defaultAction: {
                                         type: 'uri',
-                                        label: 'Add To Chart',
+                                        label: 'View detail',
                                         uri: 'http://example.com/page/123'
                                     },
-                                    actions: [{}]
+                                    actions: [{
+                                            type: 'postback',
+                                            label: 'Buy',
+                                            data: 'action=buy&itemid=111'
+                                        },
+                                        {
+                                            type: 'postback',
+                                            label: 'Add to cart',
+                                            data: 'action=add&itemid=111'
+                                        },
+                                        {
+                                            type: 'uri',
+                                            label: 'View detail',
+                                            uri: 'http://example.com/page/111'
+                                        }
+                                    ]
                                 },
                                 {
-                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    thumbnailImageUrl: 'https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/8/110114/110114_e8af9e0f-64d8-4ee1-955b-5e11fbddd95a_780_780.jpg',
                                     imageBackgroundColor: '#FFFFFF',
-                                    title: 'this is menu',
-                                    text: 'description',
+                                    title: 'Benih Melon Hijau',
+                                    text: 'Benih melon hijau berkualitas namun hemat untuk skala hobi',
                                     defaultAction: {
                                         type: 'uri',
-                                        label: 'Add To Chart',
+                                        label: 'View detail',
                                         uri: 'http://example.com/page/123'
                                     },
-                                    actions: [{}]
+                                    actions: [{
+                                            type: 'postback',
+                                            label: 'Buy',
+                                            data: 'action=buy&itemid=111'
+                                        },
+                                        {
+                                            type: 'postback',
+                                            label: 'Add to cart',
+                                            data: 'action=add&itemid=111'
+                                        },
+                                        {
+                                            type: 'uri',
+                                            label: 'View detail',
+                                            uri: 'http://example.com/page/111'
+                                        }
+                                    ]
                                 },
                             ],
                             imageAspectRatio: 'rectangle',

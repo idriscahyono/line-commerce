@@ -33,6 +33,16 @@ app.post("/webhook", line.middleware(config), function (req, res) {
         });
 });
 
+const replyText = (token, texts) => {
+    texts = Array.isArray(texts) ? texts : [texts];
+    return client.replyMessage(
+        token,
+        texts.map((text) => ({
+            type: 'text',
+            text
+        }))
+    );
+};
 
 function handleEvent(event) {
 
@@ -47,13 +57,14 @@ function handleEvent(event) {
             const message = event.message;
             switch (message.type) {
                 case 'text':
-                    if (['Menu'].indexOf(message.text) > -1) {
-                        return handleCommand(message, replyToken, event.source);
-                    } else {
-                        return menu.sendMenuMessage(userId, replyToken);
-                    }
-                    default:
-                        return menu.sendTextMessage(userId, replyToken, 'Masih Coba Gan')
+                    return handleText(message, event.replyToken, event.source);
+                    // if (['Menu'].indexOf(message.text) > -1) {
+                    //     return handleCommand(message, replyToken, event.source);
+                    // } else {
+                    //     return menu.sendMenuMessage(userId, replyToken);
+                    // }
+                    // default:
+                    //     return menu.sendTextMessage(userId, replyToken, 'Masih Coba Gan')
             }
             case 'follow':
                 return menu.sendMenuMessage(userId, replyToken);
@@ -113,12 +124,25 @@ function handleEvent(event) {
     // return client.replyMessage(event.replyToken, echo);
 }
 
-function handleCommand(message, replyToken, source) {
+function handleText(message, replyToken, source) {
     switch (message.text) {
-        case 'Menu':
-            return menu.sendMenuMessage(source.userId, replyToken);
-        default:
-            return;
+        case 'profile':
+            // return menu.sendMenuMessage(source.userId, replyToken);
+            if (source.userId) {
+                return client.getProfile(source.userId)
+                    .then((profile) => replyText(
+                        replyToken,
+                        [
+                            `Display name: ${profile.displayName}`,
+                            `Status message: ${profile.statusMessage}`,
+                        ]
+                    ));
+            } else {
+                return replyText(replyToken, 'Bot cant use profile API without user ID');
+            }
+            default:
+                console.log(`Echo message to ${replyToken}: ${message.text}`);
+                return replyText(replyToken, message.text);
     }
 }
 

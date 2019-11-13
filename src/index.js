@@ -148,7 +148,7 @@ function handleText(message, replyToken, source) {
                                     ]
                                 },
                                 {
-                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    thumbnailImageUrl: 'https://toko.sentratani.com/image/cache/catalog/Benih%20Cabe%20Rawit%20Hibrida%20F1%20SONAR%20-10%20Gr-500x500.png',
                                     imageBackgroundColor: '#FFFFFF',
                                     title: 'Benih Cabai',
                                     text: 'Berkualitas',

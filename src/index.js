@@ -69,59 +69,6 @@ function handleEvent(event) {
             case 'follow':
                 return menu.sendMenuMessage(userId, replyToken);
     }
-    // if (event.message.text == "hai") {
-    //     const echo = {
-    //         type: 'text',
-    //         text: "Halo"
-    //     };
-    //     return client.replyMessage(event.replyToken, echo);
-    // }
-
-    // if (event.message.text == "mana") {
-    //     const echo = {
-    //         type: 'bubble',
-    //         body: {
-    //             type: 'box',
-    //             layout: 'horizontal',
-    //             contents: [{
-    //                     type: 'text',
-    //                     text: 'Hello,'
-    //                 },
-    //                 {
-    //                     type: 'text',
-    //                     text: 'World!'
-    //                 }
-    //             ]
-    //         }
-    //     };
-    //     return client.replyMessage(event.replyToken, echo);
-    // }
-
-    // if (event.message.text == "menu") {
-    //     return client.replyMessage(event.replyToken, JSON.stringify({
-    //         "type": "bubble",
-    //         "body": {
-    //             "type": "box",
-    //             "layout": "horizontal",
-    //             "contents": [{
-    //                     "type": "text",
-    //                     "text": "Hello,"
-    //                 },
-    //                 {
-    //                     "type": "text",
-    //                     "text": "World!"
-    //                 }
-    //             ]
-    //         }
-    //     }))
-    // }
-
-
-    // const echo = {
-    //     type: 'text',
-    //     text: "Siapa Ya?"
-    // };
-    // return client.replyMessage(event.replyToken, echo);
 }
 
 function handleText(message, replyToken, source) {
@@ -139,47 +86,6 @@ function handleText(message, replyToken, source) {
             } else {
                 return replyText(replyToken, 'Bot cant use profile API without user ID');
             }
-            case 'buble':
-                return client.replyMessage(
-                    replyToken, {
-                        type: 'bubble',
-                        body: {
-                            type: 'box',
-                            layout: 'horizontal',
-                            contents: [{
-                                    type: 'text',
-                                    text: 'Hello,'
-                                },
-                                {
-                                    type: 'text',
-                                    text: 'World!'
-                                }
-                            ]
-                        }
-                    }
-                )
-            case 'confirm':
-                return client.replyMessage(
-                    replyToken, {
-                        type: 'template',
-                        altText: 'Confirm alt text',
-                        template: {
-                            type: 'confirm',
-                            text: 'Do it?',
-                            actions: [{
-                                    label: 'Yes',
-                                    type: 'message',
-                                    text: 'Yes!'
-                                },
-                                {
-                                    label: 'No',
-                                    type: 'message',
-                                    text: 'No!'
-                                },
-                            ],
-                        },
-                    }
-                )
             case 'list':
                 return client.replyMessage(
                     replyToken, {
@@ -211,7 +117,7 @@ function handleText(message, replyToken, source) {
                 return client.replyMessage(
                     replyToken, {
                         type: 'template',
-                        altText: 'this is a carousel template',
+                        altText: 'Daftar Menu',
                         template: {
                             type: 'carousel',
                             columns: [{
@@ -219,27 +125,11 @@ function handleText(message, replyToken, source) {
                                     imageBackgroundColor: '#FFFFFF',
                                     title: 'this is menu',
                                     text: 'description',
-                                    defaultAction: {
-                                        type: 'uri',
-                                        label: 'View detail',
-                                        uri: 'http://example.com/page/123'
-                                    },
                                     actions: [{
-                                            type: 'postback',
-                                            label: 'Buy',
-                                            data: 'action=buy&itemid=111'
-                                        },
-                                        {
-                                            type: 'postback',
-                                            label: 'Add to cart',
-                                            data: 'action=add&itemid=111'
-                                        },
-                                        {
-                                            type: 'uri',
-                                            label: 'View detail',
-                                            uri: 'http://example.com/page/111'
-                                        }
-                                    ]
+                                        type: 'postback',
+                                        label: 'Add To Chart',
+                                        data: 'action=buy&itemid=111'
+                                    }, ]
                                 },
                                 {
                                     thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
@@ -274,36 +164,7 @@ function handleText(message, replyToken, source) {
                         }
                     }
                 )
-            case 'datetime':
-                return client.replyMessage(
-                    replyToken, {
-                        type: 'template',
-                        altText: 'Datetime pickers alt text',
-                        template: {
-                            type: 'buttons',
-                            text: 'Select date / time !',
-                            actions: [{
-                                    type: 'datetimepicker',
-                                    label: 'date',
-                                    data: 'DATE',
-                                    mode: 'date'
-                                },
-                                {
-                                    type: 'datetimepicker',
-                                    label: 'time',
-                                    data: 'TIME',
-                                    mode: 'time'
-                                },
-                                {
-                                    type: 'datetimepicker',
-                                    label: 'datetime',
-                                    data: 'DATETIME',
-                                    mode: 'datetime'
-                                },
-                            ],
-                        },
-                    }
-                );
+
             case 'menu':
                 return client.replyMessage(
                     replyToken, {
@@ -375,6 +236,58 @@ function handleText(message, replyToken, source) {
                                 ]
                             }
                         }]
+                    }
+                )
+            case 'datetime':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'Datetime pickers alt text',
+                        template: {
+                            type: 'buttons',
+                            text: 'Select date / time !',
+                            actions: [{
+                                    type: 'datetimepicker',
+                                    label: 'date',
+                                    data: 'DATE',
+                                    mode: 'date'
+                                },
+                                {
+                                    type: 'datetimepicker',
+                                    label: 'time',
+                                    data: 'TIME',
+                                    mode: 'time'
+                                },
+                                {
+                                    type: 'datetimepicker',
+                                    label: 'datetime',
+                                    data: 'DATETIME',
+                                    mode: 'datetime'
+                                },
+                            ],
+                        },
+                    }
+                );
+            case 'confirm':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'Confirm alt text',
+                        template: {
+                            type: 'confirm',
+                            text: 'Do it?',
+                            actions: [{
+                                    label: 'Yes',
+                                    type: 'message',
+                                    text: 'Yes!'
+                                },
+                                {
+                                    label: 'No',
+                                    type: 'message',
+                                    text: 'No!'
+                                },
+                            ],
+                        },
                     }
                 )
             default:

@@ -40,7 +40,7 @@ function handleEvent(event) {
     }
 
     if (event.message.text == "menu") {
-        return client.replyMessage(event.replyToken, JSON.parse({
+        return client.replyMessage(event.replyToken, JSON.stringify({
             "type": "bubble",
             "body": {
                 "type": "box",

@@ -94,7 +94,7 @@ function handleText(message, replyToken, source) {
                         template: {
                             type: 'image_carousel',
                             columns: [{
-                                    imageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    imageUrl: 'https://toko.sentratani.com/image/cache/catalog/produk/Benih-Panah-Merah-Melon-Gracia-F1-500-Butir-500x500.png',
                                     action: {
                                         type: 'postback',
                                         label: 'Buy',

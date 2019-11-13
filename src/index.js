@@ -188,7 +188,7 @@ function handleText(message, replyToken, source) {
                         template: {
                             type: 'image_carousel',
                             columns: [{
-                                    imageUrl: 'https://example.com/bot/images/item1.jpg',
+                                    // imageUrl: 'https://example.com/bot/images/item1.jpg',
                                     action: {
                                         type: 'postback',
                                         label: 'Buy',
@@ -196,7 +196,7 @@ function handleText(message, replyToken, source) {
                                     }
                                 },
                                 {
-                                    imageUrl: 'https://example.com/bot/images/item1.jpg',
+                                    // imageUrl: 'https://example.com/bot/images/item1.jpg',
                                     action: {
                                         type: 'postback',
                                         label: 'Buy',
@@ -248,7 +248,7 @@ function handleText(message, replyToken, source) {
                                 size: 'full',
                                 aspectRatio: '20:13',
                                 aspectMode: 'cover',
-                                url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png'
+                                // url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png'
                             },
                             body: {
                                 type: 'box',

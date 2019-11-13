@@ -127,7 +127,6 @@ function handleEvent(event) {
 function handleText(message, replyToken, source) {
     switch (message.text) {
         case 'profile':
-            // return menu.sendMenuMessage(source.userId, replyToken);
             if (source.userId) {
                 return client.getProfile(source.userId)
                     .then((profile) => replyText(
@@ -140,6 +139,63 @@ function handleText(message, replyToken, source) {
             } else {
                 return replyText(replyToken, 'Bot cant use profile API without user ID');
             }
+            case 'buttons':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'Buttons alt text',
+                        template: {
+                            type: 'buttons',
+                            thumbnailImageUrl: buttonsImageURL,
+                            title: 'My button sample',
+                            text: 'Hello, my button',
+                            actions: [{
+                                    label: 'Go to line.me',
+                                    type: 'uri',
+                                    uri: 'https://line.me'
+                                },
+                                {
+                                    label: 'Say hello1',
+                                    type: 'postback',
+                                    data: 'hello こんにちは'
+                                },
+                                {
+                                    label: '言 hello2',
+                                    type: 'postback',
+                                    data: 'hello こんにちは',
+                                    text: 'hello こんにちは'
+                                },
+                                {
+                                    label: 'Say message',
+                                    type: 'message',
+                                    text: 'Rice=米'
+                                },
+                            ],
+                        },
+                    }
+                );
+            case 'confirm':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'Confirm alt text',
+                        template: {
+                            type: 'confirm',
+                            text: 'Do it?',
+                            actions: [{
+                                    label: 'Yes',
+                                    type: 'message',
+                                    text: 'Yes!'
+                                },
+                                {
+                                    label: 'No',
+                                    type: 'message',
+                                    text: 'No!'
+                                },
+                            ],
+                        },
+                    }
+                )
             default:
                 console.log(`Echo message to ${replyToken}: ${message.text}`);
                 return replyText(replyToken, message.text);

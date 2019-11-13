@@ -39,6 +39,26 @@ function handleEvent(event) {
         return client.replyMessage(event.replyToken, echo);
     }
 
+    if (event.message.text == "mana") {
+        const echo = {
+            type: 'bubble',
+            body: {
+                type: 'box',
+                layout: 'horizontal',
+                contents: [{
+                        type: 'text',
+                        text: 'Hello,'
+                    },
+                    {
+                        type: 'text',
+                        text: 'World!'
+                    }
+                ]
+            }
+        };
+        return client.replyMessage(event.replyToken, echo);
+    }
+
     if (event.message.text == "menu") {
         return client.replyMessage(event.replyToken, JSON.stringify({
             "type": "bubble",

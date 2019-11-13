@@ -139,6 +139,25 @@ function handleText(message, replyToken, source) {
             } else {
                 return replyText(replyToken, 'Bot cant use profile API without user ID');
             }
+            case 'buble':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'bubble',
+                        body: {
+                            type: 'box',
+                            layout: 'horizontal',
+                            contents: [{
+                                    type: 'text',
+                                    text: 'Hello,'
+                                },
+                                {
+                                    type: 'text',
+                                    text: 'World!'
+                                }
+                            ]
+                        }
+                    }
+                )
             case 'confirm':
                 return client.replyMessage(
                     replyToken, {
@@ -161,94 +180,6 @@ function handleText(message, replyToken, source) {
                         },
                     }
                 )
-            case 'carousel':
-                return client.replyMessage(
-                    replyToken, {
-                        type: 'template',
-                        altText: 'Carousel alt text',
-                        template: {
-                            type: 'carousel',
-                            columns: [{
-                                    thumbnailImageUrl: buttonsImageURL,
-                                    title: 'hoge',
-                                    text: 'fuga',
-                                    actions: [{
-                                            label: 'Go to line.me',
-                                            type: 'uri',
-                                            uri: 'https://line.me'
-                                        },
-                                        {
-                                            label: 'Say hello1',
-                                            type: 'postback',
-                                            data: 'hello'
-                                        },
-                                    ],
-                                },
-                                {
-                                    thumbnailImageUrl: buttonsImageURL,
-                                    title: 'hoge',
-                                    text: 'fuga',
-                                    actions: [{
-                                            label: 'hello2',
-                                            type: 'postback',
-                                            data: 'hello',
-                                            text: 'hello'
-                                        },
-                                        {
-                                            label: 'Say message',
-                                            type: 'message',
-                                            text: 'Rice=米'
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    }
-                );
-            case 'image carousel':
-                return client.replyMessage(
-                    replyToken, {
-                        type: 'template',
-                        altText: 'Image carousel alt text',
-                        template: {
-                            type: 'image_carousel',
-                            columns: [{
-                                    imageUrl: buttonsImageURL,
-                                    action: {
-                                        label: 'Go to LINE',
-                                        type: 'uri',
-                                        uri: 'https://line.me'
-                                    },
-                                },
-                                {
-                                    imageUrl: buttonsImageURL,
-                                    action: {
-                                        label: 'Say hello1',
-                                        type: 'postback',
-                                        data: 'hello'
-                                    },
-                                },
-                                {
-                                    imageUrl: buttonsImageURL,
-                                    action: {
-                                        label: 'Say message',
-                                        type: 'message',
-                                        text: 'Rice'
-                                    },
-                                },
-                                {
-                                    imageUrl: buttonsImageURL,
-                                    action: {
-                                        label: 'datetime',
-                                        type: 'datetimepicker',
-                                        data: 'DATETIME',
-                                        mode: 'datetime',
-                                    },
-                                },
-                            ]
-                        },
-                    }
-                );
             case 'datetime':
                 return client.replyMessage(
                     replyToken, {

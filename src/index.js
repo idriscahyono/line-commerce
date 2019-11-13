@@ -125,11 +125,11 @@ function handleText(message, replyToken, source) {
                                     imageBackgroundColor: '#FFFFFF',
                                     title: 'this is menu',
                                     text: 'description',
-                                    actions: [{
-                                        type: 'postback',
+                                    defaultAction: {
+                                        type: 'uri',
                                         label: 'Add To Chart',
-                                        data: 'action=buy&itemid=111'
-                                    }, ]
+                                        uri: 'http://example.com/page/123'
+                                    },
                                 },
                                 {
                                     thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
@@ -138,25 +138,9 @@ function handleText(message, replyToken, source) {
                                     text: 'description',
                                     defaultAction: {
                                         type: 'uri',
-                                        label: 'View detail',
+                                        label: 'Add To Chart',
                                         uri: 'http://example.com/page/123'
                                     },
-                                    actions: [{
-                                            type: 'postback',
-                                            label: 'Buy',
-                                            data: 'action=buy&itemid=111'
-                                        },
-                                        {
-                                            type: 'postback',
-                                            label: 'Add to cart',
-                                            data: 'action=add&itemid=111'
-                                        },
-                                        {
-                                            type: 'uri',
-                                            label: 'View detail',
-                                            uri: 'http://example.com/page/111'
-                                        }
-                                    ]
                                 },
                             ],
                             imageAspectRatio: 'rectangle',

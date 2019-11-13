@@ -180,6 +180,33 @@ function handleText(message, replyToken, source) {
                         },
                     }
                 )
+            case 'list':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'List Menu',
+                        template: {
+                            type: 'image_carousel',
+                            columns: [{
+                                    imageUrl: 'https://example.com/bot/images/item1.jpg',
+                                    action: {
+                                        type: 'postback',
+                                        label: 'Buy',
+                                        data: 'action=buy&itemid=111'
+                                    }
+                                },
+                                {
+                                    imageUrl: 'https://example.com/bot/images/item1.jpg',
+                                    action: {
+                                        type: 'postback',
+                                        label: 'Buy',
+                                        data: 'action=buy&itemid=111'
+                                    }
+                                },
+                            ],
+                        },
+                    }
+                )
             case 'datetime':
                 return client.replyMessage(
                     replyToken, {

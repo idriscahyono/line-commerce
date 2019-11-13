@@ -207,6 +207,73 @@ function handleText(message, replyToken, source) {
                         },
                     }
                 )
+            case 'hai':
+                return client.replyMessage(
+                    replyToken, {
+                        type: 'template',
+                        altText: 'this is a carousel template',
+                        template: {
+                            type: 'carousel',
+                            columns: [{
+                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    imageBackgroundColor: '#FFFFFF',
+                                    title: 'this is menu',
+                                    text: 'description',
+                                    defaultAction: {
+                                        type: 'uri',
+                                        label: 'View detail',
+                                        uri: 'http://example.com/page/123'
+                                    },
+                                    actions: [{
+                                            type: 'postback',
+                                            label: 'Buy',
+                                            data: 'action=buy&itemid=111'
+                                        },
+                                        {
+                                            type: 'postback',
+                                            label: 'Add to cart',
+                                            data: 'action=add&itemid=111'
+                                        },
+                                        {
+                                            type: 'uri',
+                                            label: 'View detail',
+                                            uri: 'http://example.com/page/111'
+                                        }
+                                    ]
+                                },
+                                {
+                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    imageBackgroundColor: '#FFFFFF',
+                                    title: 'this is menu',
+                                    text: 'description',
+                                    defaultAction: {
+                                        type: 'uri',
+                                        label: 'View detail',
+                                        uri: 'http://example.com/page/123'
+                                    },
+                                    actions: [{
+                                            type: 'postback',
+                                            label: 'Buy',
+                                            data: 'action=buy&itemid=111'
+                                        },
+                                        {
+                                            type: 'postback',
+                                            label: 'Add to cart',
+                                            data: 'action=add&itemid=111'
+                                        },
+                                        {
+                                            type: 'uri',
+                                            label: 'View detail',
+                                            uri: 'http://example.com/page/111'
+                                        }
+                                    ]
+                                },
+                            ],
+                            imageAspectRatio: 'rectangle',
+                            'imageSize': 'cover'
+                        }
+                    }
+                )
             case 'datetime':
                 return client.replyMessage(
                     replyToken, {

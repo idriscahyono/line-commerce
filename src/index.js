@@ -102,7 +102,7 @@ function handleText(message, replyToken, source) {
                                     }
                                 },
                                 {
-                                    imageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    imageUrl: 'https://toko.sentratani.com/image/cache/catalog/Benih%20Cabe%20Rawit%20Hibrida%20F1%20SONAR%20-10%20Gr-500x500.png',
                                     action: {
                                         type: 'postback',
                                         label: 'Buy',
@@ -121,10 +121,10 @@ function handleText(message, replyToken, source) {
                         template: {
                             type: 'carousel',
                             columns: [{
-                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    thumbnailImageUrl: 'https://toko.sentratani.com/image/cache/catalog/produk/Benih-Panah-Merah-Melon-Gracia-F1-500-Butir-500x500.png',
                                     imageBackgroundColor: '#FFFFFF',
-                                    title: 'Benih Melon Hijau',
-                                    text: 'Benih melon hijau berkualitas namun hemat untuk skala hobi',
+                                    title: 'Benih Melon',
+                                    text: 'Berkualitas',
                                     defaultAction: {
                                         type: 'uri',
                                         label: 'View detail',
@@ -150,8 +150,8 @@ function handleText(message, replyToken, source) {
                                 {
                                     thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
                                     imageBackgroundColor: '#FFFFFF',
-                                    title: 'Benih Cabai Rawit',
-                                    text: 'Benih Cabai Cabe Rawit berkualitas namun hemat untuk skala hobi',
+                                    title: 'Benih Cabai',
+                                    text: 'Berkualitas',
                                     defaultAction: {
                                         type: 'uri',
                                         label: 'View detail',

@@ -121,10 +121,10 @@ function handleText(message, replyToken, source) {
                         template: {
                             type: 'carousel',
                             columns: [{
-                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    thumbnailImageUrl: 'https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/8/110114/110114_e8af9e0f-64d8-4ee1-955b-5e11fbddd95a_780_780.jpg',
                                     imageBackgroundColor: '#FFFFFF',
-                                    title: 'this is menu',
-                                    text: 'description',
+                                    title: 'Benih Melon Hijau',
+                                    text: 'Benih melon hijau berkualitas namun hemat untuk skala hobi',
                                     defaultAction: {
                                         type: 'uri',
                                         label: 'View detail',
@@ -148,10 +148,10 @@ function handleText(message, replyToken, source) {
                                     ]
                                 },
                                 {
-                                    thumbnailImageUrl: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                                    thumbnailImageUrl: 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/9/23/110114/110114_d3c8beed-d4a4-47ba-8e69-f7779007f523_1080_1080.jpg',
                                     imageBackgroundColor: '#FFFFFF',
-                                    title: 'this is menu',
-                                    text: 'description',
+                                    title: 'Benih Cabai Rawit',
+                                    text: 'Benih Cabai Cabe Rawit berkualitas namun hemat untuk skala hobi',
                                     defaultAction: {
                                         type: 'uri',
                                         label: 'View detail',

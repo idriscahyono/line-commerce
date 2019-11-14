@@ -66,16 +66,33 @@
                     default:
                         return menu.sendTextMessage(userId, replyToken, 'Masih Coba Gan')
                 }
-                case 'follow':
-                    return menu.sendMenuMessage(userId, replyToken);
-                    break;
 
                 case 'postback':
                     let postbackData = event.postback.data.split("_", 2);
                     let mode = postbackData[0];
                     switch (mode) {
                         case 'BUY':
-                            return menu.sendRecipe(userId, replyToken);
+                            return client.replyMessage(
+                                replyToken, {
+                                    type: 'template',
+                                    altText: 'Confirm alt text',
+                                    template: {
+                                        type: 'confirm',
+                                        text: 'Do it?',
+                                        actions: [{
+                                                label: 'Yes',
+                                                type: 'message',
+                                                text: 'Yes!'
+                                            },
+                                            {
+                                                label: 'No',
+                                                type: 'message',
+                                                text: 'No!'
+                                            },
+                                        ],
+                                    },
+                                }
+                            )
                     }
                     default:
                         throw new Error(`Unknown event: ${JSON.stringify(event)}`);

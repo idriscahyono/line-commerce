@@ -24,12 +24,22 @@ module.exports = {
     },
 
     sendMenuMessage: async function (userId, replyToken) {
-        let buble = options.getMenuBuble(replyToken);
-        let message = [
-            lineHelper.createFlexMessage('Menu', buble),
-        ];
-        SVGComponentTransferFunctionElement(replyToken, message[0].contents);
-        client.replyMessage(replyToken, message)
+        let menu = options.getMenu(replyToken);
+        // let messages = [
+        //     menu
+        // ];
+        client.replyMessage(replyToken, menu)
+            .then((msg) => {
+                console.log('line:', msg)
+            })
+            .catch((err) => {
+                console.log('line error:', err)
+            });
+    },
+
+    sendRecipe: async function (replyToken) {
+        let recipe = options.getRecipe(replyToken);
+        client.replyMessage(replyToken, recipe)
             .then((msg) => {
                 console.log('line:', msg)
             })
@@ -37,4 +47,19 @@ module.exports = {
                 console.log('line error:', err)
             });
     }
+
+    // sendMenuMessage: async function (userId, replyToken) {
+    //     let buble = options.getMenuBuble(replyToken);
+    //     let message = [
+    //         lineHelper.createFlexMessage('Menu', buble),
+    //     ];
+    //     SVGComponentTransferFunctionElement(replyToken, message[0].contents);
+    //     client.replyMessage(replyToken, message)
+    //         .then((msg) => {
+    //             console.log('line:', msg)
+    //         })
+    //         .catch((err) => {
+    //             console.log('line error:', err)
+    //         });
+    // }
 }

@@ -103,7 +103,7 @@
     function handleCommand(message, replyToken, source) {
         switch (message.text) {
             case 'Menu':
-                return menu.sendMenuMessage(source.userId, replyToken);
+                return menu.sendMenuMessage(replyToken);
             case 'Buy':
                 return menu.sendRecipe(source.userId, replyToken);
             default:

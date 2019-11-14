@@ -58,13 +58,14 @@
                 switch (message.type) {
                     case 'text':
                         // return handleText(message, event.replyToken, event.source);
-                        if (['Buy'].indexOf(message.text) > -1) {
-                            return handleCommand(message, replyToken, event.source);
-                        } else {
-                            return handleCommand(message, replyToken, event.source);
-                        }
-                        default:
-                            return menu.sendTextMessage(userId, replyToken, 'Masih Coba Gan')
+                        return handleCommand(message, replyToken, event.source);
+                        // if (['Buy'].indexOf(message.text) > -1) {
+                        //     return handleCommand(message, replyToken, event.source);
+                        // } else {
+                        //     return handleCommand(message, replyToken, event.source);
+                        // }
+                    default:
+                        return menu.sendTextMessage(userId, replyToken, 'Masih Coba Gan')
                 }
                 case 'follow':
                     return menu.sendMenuMessage(userId, replyToken);

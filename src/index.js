@@ -199,7 +199,7 @@
                                         actions: [{
                                                 type: 'postback',
                                                 label: 'Buy',
-                                                data: 'action=buy&itemid=111'
+                                                data: 'BUY'
                                             },
                                             {
                                                 type: 'postback',

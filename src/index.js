@@ -73,41 +73,48 @@
                     switch (mode) {
                         case 'BUY':
                             return client.replyMessage(
-                                // replyToken, {
-                                //     type: 'template',
-                                //     altText: 'Recipe',
-                                //     template: {
-                                //         type: 'confirm',
-                                //         text: 'Do it?',
-                                //         actions: [{
-                                //                 label: 'Yes',
-                                //                 type: 'message',
-                                //                 text: 'Yes!'
-                                //             },
-                                //             {
-                                //                 label: 'No',
-                                //                 type: 'message',
-                                //                 text: 'No!'
-                                //             },
-                                //         ],
-                                //     },
-                                // }
                                 replyToken, {
-                                    type: 'bubble',
-                                    body: {
-                                        type: 'box',
-                                        layout: 'horizontal',
-                                        contents: [{
-                                                type: 'text',
-                                                text: 'Hello,'
-                                            },
-                                            {
-                                                type: 'text',
-                                                text: 'World!'
+                                    // type: 'template',
+                                    // altText: 'Recipe',
+                                    // template: {
+                                    //     type: 'confirm',
+                                    //     text: 'Do it?',
+                                    //     actions: [{
+                                    //             label: 'Yes',
+                                    //             type: 'message',
+                                    //             text: 'Yes!'
+                                    //         },
+                                    //         {
+                                    //             label: 'No',
+                                    //             type: 'message',
+                                    //             text: 'No!'
+                                    //         },
+                                    //     ],
+                                    // },
+
+                                    type: 'flex',
+                                    allText: 'Recipe',
+                                    flex: {
+                                        type: 'flex',
+                                        altText: 'this is a flex message',
+                                        contents: {
+                                            type: 'bubble',
+                                            body: {
+                                                type: 'box',
+                                                layout: 'vertical',
+                                                contents: [{
+                                                        type: 'text',
+                                                        text: 'hello'
+                                                    },
+                                                    {
+                                                        type: 'text',
+                                                        text: 'world'
+                                                    }
+                                                ]
                                             }
-                                        ]
+                                        }
                                     }
-                                }
+                                },
                             )
                     }
                     default:

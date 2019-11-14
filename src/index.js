@@ -57,7 +57,8 @@
                 const message = event.message;
                 switch (message.type) {
                     case 'text':
-                        return handleText(message, event.replyToken, event.source);
+                        // return handleText(message, event.replyToken, event.source);
+                        return handleCommand(message, replyToken, event.source);
                         // if (['Buy'].indexOf(message.text) > -1) {
                         //     return handleCommand(message, replyToken, event.source);
                         // } else {
@@ -99,16 +100,16 @@
         }
     }
 
-    // function handleCommand(message, replyToken, source) {
-    //     switch (message.text) {
-    //         case 'Menu':
-    //             return menu.sendMenuMessage(source.userId, replyToken);
-    //         case 'Buy':
-    //             return menu.sendRecipe(source.userId, replyToken);
-    //         default:
-    //             return;
-    //     }
-    // }
+    function handleCommand(message, replyToken, source) {
+        switch (message.text) {
+            case 'Menu':
+                return menu.sendMenuMessage(source.userId, replyToken);
+            case 'Buy':
+                return menu.sendRecipe(source.userId, replyToken);
+            default:
+                return;
+        }
+    }
 
     function handleText(message, replyToken, source) {
         switch (message.text) {

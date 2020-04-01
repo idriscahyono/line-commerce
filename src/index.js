@@ -26,7 +26,7 @@ app.post("/webhook", line.middleware(config), function (req, res) {
         return res.status(500).end();
     }
     Promise
-        .all(req.body.events.map(handleEvent))
+        .all(req.body.events.map(produk.handleEvent))
         .then((result) => res.json(result))
         .catch((err) => {
             console.error(err);

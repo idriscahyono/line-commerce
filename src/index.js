@@ -185,13 +185,13 @@ var produk = (module.exports = {
         switch (event.message.text) {
             case "menu":
                 await produk.updateState("menu", event.source.userId)
-                echo = await produk.handelMenu(event)
+                echo = await produk.handleMenu(event)
                 return echo
                 break
 
             default:
                 await produk.updateState("menu", event.source.userId)
-                echo = await produk.handelMenu(event)
+                echo = await produk.handleMenu(event)
                 return echo
                 break
         }

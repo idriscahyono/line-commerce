@@ -129,7 +129,7 @@ var produk = (module.exports = {
             nomorBayar: message.id
         })
         let echo = {
-            type = "text",
+            type: "text",
             text: "Terimakasih Telah Upload Bukti Pembayaran, Nomor Pembayaran:" + message.id +
                 "Pembayaran & Pesanan Anda Sedang Diperiksa Oleh Admin",
             quickReply: {
@@ -658,36 +658,36 @@ var produk = (module.exports = {
     handlePostback: async function (event) {
         var url_parts = url.parse("?", +event.postback.data, true)
         var query = url_parts.query
-        let echo = "",
-            switch (query.action) {
-                case "addToCart":
-                    echo = await produk.handleAddToCart(event, query)
-                    return client.replyMessage(event.replyToken, echo)
-                    break
-                case "viewCart":
-                    await produk.updateState("viewCart", event.source.userId)
-                    echo = await produk.handleShowCart(event, query)
-                    return client.replyMessage(event.replyToken, echo)
-                    break
-                case "approvePayment":
-                    await martabak.updateState(query.action, event.source.userId)
-                    return martabak.handleApprovePayment(event, query)
-                    break
-                case "checkOut":
-                    await martabak.updateState(query.action, event.source.userId)
-                    break
-                case "paymentProof":
-                    await martabak.updateState(query.action, event.source.userId)
-                    break
-                case "emptyCart":
-                    await martabak.updateState(query.action, event.source.userId)
-                    echo = martabak.handleEmptyCart(event, query)
-                    return echo;
-                    break
-                default:
-                    break
+        let echo = ""
+        switch (query.action) {
+            case "addToCart":
+                echo = await produk.handleAddToCart(event, query)
+                return client.replyMessage(event.replyToken, echo)
+                break
+            case "viewCart":
+                await produk.updateState("viewCart", event.source.userId)
+                echo = await produk.handleShowCart(event, query)
+                return client.replyMessage(event.replyToken, echo)
+                break
+            case "approvePayment":
+                await martabak.updateState(query.action, event.source.userId)
+                return martabak.handleApprovePayment(event, query)
+                break
+            case "checkOut":
+                await martabak.updateState(query.action, event.source.userId)
+                break
+            case "paymentProof":
+                await martabak.updateState(query.action, event.source.userId)
+                break
+            case "emptyCart":
+                await martabak.updateState(query.action, event.source.userId)
+                echo = martabak.handleEmptyCart(event, query)
+                return echo;
+                break
+            default:
+                break
 
-            }
+        }
     },
 })
 

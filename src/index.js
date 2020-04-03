@@ -98,7 +98,7 @@ var produk = (module.exports = {
         const username = userInfo.username
         //mengambil data user dari db userLine
         let userExist = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
-        console.log('get data db userLine', userExist)
+        console.log('get data db userLine', userExist.data)
 
         //jika data user kosong, data akan ditambahkan ke db userLine
         if (userExist.data != null) {

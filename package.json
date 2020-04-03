@@ -18,6 +18,7 @@
     "mongoose": "^5.9.5",
     "nodemon": "^2.0.2",
     "path": "^0.12.7",
-    "rajaongkir-nodejs": "^0.2.0"
+    "rajaongkir-nodejs": "^0.2.0",
+    "url": "^0.11.0"
   }
 }

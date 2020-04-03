@@ -169,13 +169,11 @@ var produk = (module.exports = {
     updateState: async function (state, userId) {
         try {
             //update state pada db userLine
-            console.log(userId)
-            console.log(state)
             let updateState = await axios.put(`https://backend-skripsi.herokuapp.com/userline/${userId}`, {
                 state: state
             })
             let userInfo = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
-            console.log("state saat ini: " + userInfo.state)
+            console.log("state saat ini: " + userInfo.data.state)
         } catch (err) {
             console.log(err)
         }

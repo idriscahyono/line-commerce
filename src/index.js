@@ -99,7 +99,7 @@ var produk = (module.exports = {
         let userExist = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
         console.log('get data db userLine', userExist.data)
         //jika data user kosong, data akan ditambahkan ke db userLine
-        if (Object.keys(userExist.data) == 0) {
+        if ((userExist.data).length == 0) {
             let createUser = await axios.post('https://backend-skripsi.herokuapp.com/userline', {
                 userId,
                 username
@@ -218,7 +218,7 @@ var produk = (module.exports = {
         }
         let contentToAdd = [];
         for (item of produkData.data) {
-            let dari = {
+            let soko = {
                 type: "bubble",
                 hero: {
                     type: "image",
@@ -268,7 +268,7 @@ var produk = (module.exports = {
                     }]
                 }
             }
-            contentToAdd.push(dari)
+            contentToAdd.push(soko)
         }
         echo.contents.contents = contentToAdd
         return echo

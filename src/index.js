@@ -101,7 +101,7 @@ var produk = (module.exports = {
         console.log('get data db userLine', userExist.status)
 
         //jika data user kosong, data akan ditambahkan ke db userLine
-        if (userExist != null) {
+        if (userExist.data != null) {
             console.log("Data " + userId + " ada")
         } else {
             let createUser = await axios.post('https://backend-skripsi.herokuapp.com/userline', {

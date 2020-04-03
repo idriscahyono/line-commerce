@@ -94,8 +94,8 @@ var produk = (module.exports = {
         //mengambil data user line
         let userInfo = await produk.getUserInfo(event.source.userId)
 
-        var userId = userInfo.userId
-        var username = userInfo.username
+        const userId = userInfo.userId
+        const username = userInfo.username
         //mengambil data user dari db userLine
         let userExist = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
         console.log('get data db userLine', userExist.status)
@@ -170,7 +170,7 @@ var produk = (module.exports = {
     updateState: async function (userId, state) {
         try {
             //update state pada db userLine
-            let updateState = await axios.put('https://backend-skripsi.herokuapp.com/userline', {
+            let updateState = await axios.put('https://backend-skripsi.herokuapp.com/userline/', {
                 userId: userId
             }, {
                 state: state

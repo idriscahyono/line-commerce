@@ -99,7 +99,9 @@ var produk = (module.exports = {
         let userExist = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
         console.log('get data db userLine', userExist.data)
         //jika data user kosong, data akan ditambahkan ke db userLine
-        if (Object.keys(produk.data) == 0) {
+        if (Object.keys(produk.data) == null) {
+            console.log(userId)
+            console.log(username)
             let createUser = await axios.post('https://backend-skripsi.herokuapp.com/userline', {
                 userId,
                 username

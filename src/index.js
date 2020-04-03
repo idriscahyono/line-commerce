@@ -93,22 +93,20 @@ var produk = (module.exports = {
     handleUser: async function (event) {
         //mengambil data user line
         let userInfo = await produk.getUserInfo(event.source.userId)
-
         const userId = userInfo.userId
         const username = userInfo.username
         //mengambil data user dari db userLine
         let userExist = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
         console.log('get data db userLine', userExist.data)
-
         //jika data user kosong, data akan ditambahkan ke db userLine
-        if (userExist.data != null) {
-            console.log("Data " + userId + " ada")
-        } else {
+        if (Object.keys(produk.data) == 0) {
             let createUser = await axios.post('https://backend-skripsi.herokuapp.com/userline', {
                 userId,
                 username
             })
             console.log('post data db userLine', createUser.status)
+        } else {
+            console.log("Data " + userId + " ada")
         }
     },
     getUserInfo: async function (userId) {

@@ -94,15 +94,13 @@ var produk = (module.exports = {
         //mengambil data user line
         let userInfo = await produk.getUserInfo(event.source.userId)
         //mengambil data user dari db userLine
-        let userExist = await axios.get('https://backend-skripsi.herokuapp.com/userline', {
-            userId: userInfo.userId
-        })
+        let userExist = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userInfo.userId}`)
         console.log('get data db userLine', userExist.status)
         //jika data user kosong, data akan ditambahkan ke db userLine
         if (userExist == null) {
             let createUser = await axios.post('https://backend-skripsi.herokuapp.com/userline', {
                 userId: userInfo.userId,
-                username: userInfo.displayName
+                username: userInfo.username
             })
             console.log('post data db userLine', createUser.status)
         }
@@ -172,9 +170,7 @@ var produk = (module.exports = {
             }, {
                 state: state
             })
-            let userInfo = await axios.get('https://backend-skripsi.herokuapp.com/userline', {
-                userId: userId
-            })
+            let userInfo = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
             console.log("state saat ini: " + userInfo.state)
         } catch (err) {
             console.log(err)
@@ -197,9 +193,7 @@ var produk = (module.exports = {
         }
     },
     handleMenu: async function (event) {
-        let produkData = await axios.get('https://backend-skripsi.herokuapp.com/produk').sort({
-            harga: 1
-        })
+        let produkData = await axios.get('https://backend-skripsi.herokuapp.com/produk')
         const echo = {
             type: "flex",
             altText: "Daftar Menu",
@@ -219,7 +213,7 @@ var produk = (module.exports = {
             }
         }
         let contentToAdd = [];
-        for (item of produkData) {
+        for (item of produkData.data) {
             let dari = {
                 type: "bubble",
                 hero: {
@@ -278,8 +272,8 @@ var produk = (module.exports = {
     handleAddToCart: async function (event, query) {
         try {
             await produk.updateState("addToCart", event.source.userId)
-            let dataProduk = await axios.get(`https://backend-skripsi.herokuapp.com/produk/${query.idMenu}`)
-            let createPesanan = await axios.post('https://backend-skripsi.herokuapp.com/produk', {
+            let dataProduk = await axios.get(`https://backend-skripsi.herokuapp.com/pesanan/${query.idMenu}`)
+            let createPesanan = await axios.post('https://backend-skripsi.herokuapp.com/pesanan', {
                 userId: event.source.userId,
                 nama: produk.nama,
                 harga: produk.harga,

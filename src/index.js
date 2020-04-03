@@ -174,7 +174,10 @@ var produk = (module.exports = {
                 state: state
             })
             let userInfo = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
-            console.log("state saat ini: " + userInfo.data.state)
+            for (item of userInfo.data) {
+                console.log("state saat ini: " + userInfo.data.state)
+            }
+
         } catch (err) {
             console.log(err)
         }

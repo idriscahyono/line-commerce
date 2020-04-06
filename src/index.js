@@ -236,7 +236,7 @@ var produk = (module.exports = {
             }
             contentToAdd.push(soko)
         }
-        echo.contents.contents = contentToAdd
+        echo.template.columns = contentToAdd
         return echo
     },
     handleAddToCart: async function (event, query) {

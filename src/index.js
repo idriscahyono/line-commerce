@@ -45,7 +45,7 @@ var produk = (module.exports = {
                     switch (message.type) {
                         case "text":
                             let echo = await produk.handleMessage(event)
-                            return client.replyMessage(event.replyToken, echo)
+                            return client.replyMessage(message, event.replyToken, echo)
                         case "image":
                             var userState = await userLine.findOne({
                                 userId: event.source.userId
@@ -201,10 +201,10 @@ var produk = (module.exports = {
     handleMenu: async function (event) {
         let produkData = await axios.get('https://backend-skripsi.herokuapp.com/produk')
         const echo = {
-            type: "template",
-            altText: "Daftar Menu",
+            type: 'template',
+            altText: 'Daftar Menu',
             template: {
-                type: "carousel",
+                type: 'carousel',
                 columns: [],
                 imageAspectRatio: 'rectangle',
                 'imageSize': 'cover'

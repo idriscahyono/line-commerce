@@ -201,11 +201,13 @@ var produk = (module.exports = {
     handleMenu: async function (event) {
         let produkData = await axios.get('https://backend-skripsi.herokuapp.com/produk')
         const echo = {
-            type: "flex",
+            type: "template",
             altText: "Daftar Menu",
-            contents: {
+            template: {
                 type: "carousel",
-                columns: []
+                columns: [],
+                imageAspectRatio: 'rectangle',
+                'imageSize': 'cover'
             }
             // ,
             // quickReply: {
@@ -222,24 +224,15 @@ var produk = (module.exports = {
         let contentToAdd = [];
         for (item of produkData.data) {
             let soko = {
-                type: 'template',
-                altText: 'Daftar Menu',
-                template: {
-                    type: 'carousel',
-                    columns: [{
-                        thumbnailImageUrl: item.image_url,
-                        imageBackgroundColor: '#FFFFFF',
-                        title: item.nama,
-                        text: item.harga.toString(),
-                        actions: [{
-                            type: 'postback',
-                            label: 'Add To Cart',
-                            data: 'action=addToCart&idMenu=' + item._id
-                        }, ]
-                    }, ],
-                    imageAspectRatio: 'rectangle',
-                    'imageSize': 'cover'
-                }
+                thumbnailImageUrl: item.image_url,
+                imageBackgroundColor: '#FFFFFF',
+                title: item.nama,
+                text: item.harga.toString(),
+                actions: [{
+                    type: 'postback',
+                    label: 'Add To Cart',
+                    data: 'action=addToCart&idMenu=' + item._id
+                }]
             }
             contentToAdd.push(soko)
         }

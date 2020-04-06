@@ -227,7 +227,7 @@ var produk = (module.exports = {
                 thumbnailImageUrl: item.image_url,
                 imageBackgroundColor: '#FFFFFF',
                 title: item.nama,
-                text: item.harga.toString(),
+                text: item.harga,
                 actions: [{
                     type: 'postback',
                     label: 'Add To Cart',

@@ -175,7 +175,7 @@ var produk = (module.exports = {
             })
             let userInfo = await axios.get(`https://backend-skripsi.herokuapp.com/userline/${userId}`)
             for (item of userInfo.data) {
-                console.log("state saat ini: " + userInfo.data.state)
+                console.log("state saat ini-> " + item.state)
             }
 
         } catch (err) {
@@ -205,7 +205,7 @@ var produk = (module.exports = {
             altText: "Daftar Menu",
             contents: {
                 type: "carousel",
-                contents: []
+                columns: []
             },
             quickReply: {
                 items: [{
@@ -221,53 +221,23 @@ var produk = (module.exports = {
         let contentToAdd = [];
         for (item of produkData.data) {
             let soko = {
-                type: "bubble",
-                hero: {
-                    type: "image",
-                    size: "full",
-                    aspectRatio: "20:13",
-                    aspectMode: "cover",
-                    url: item.image_url
-                },
-                body: {
-                    type: "box",
-                    layout: "vertical",
-                    spacing: "sm",
-                    contents: [{
-                            type: "text",
-                            text: item.nama,
-                            wrap: true,
-                            weight: "bold",
-                            size: "xl"
-                        },
-                        {
-                            type: "box",
-                            layout: "baseline",
-                            flex: 1,
-                            contents: [{
-                                type: "text",
-                                text: item.harga.toString(),
-                                wrap: true,
-                                weight: "bold",
-                                size: "xl",
-                                flex: 0
-                            }]
-                        }
-                    ]
-                },
-                footer: {
-                    type: "box",
-                    layout: "vertical",
-                    spacing: "sm",
-                    contents: [{
-                        type: "button",
-                        style: "primary",
-                        action: {
-                            type: "postback",
-                            label: "Add to Cart",
-                            data: "action=addToCart&idMenu=" + item._id
-                        }
-                    }]
+                type: 'template',
+                altText: 'Daftar Menu',
+                template: {
+                    type: 'carousel',
+                    columns: [{
+                        thumbnailImageUrl: item.image_url,
+                        imageBackgroundColor: '#FFFFFF',
+                        title: item.nama,
+                        text: item.harga.toString(),
+                        actions: [{
+                            type: 'postback',
+                            label: 'Add To Cart',
+                            data: 'action=addToCart&idMenu=' + item._id
+                        }, ]
+                    }, ],
+                    imageAspectRatio: 'rectangle',
+                    'imageSize': 'cover'
                 }
             }
             contentToAdd.push(soko)

@@ -206,17 +206,18 @@ var produk = (module.exports = {
             contents: {
                 type: "carousel",
                 columns: []
-            },
-            quickReply: {
-                items: [{
-                    type: "action",
-                    action: {
-                        type: "postback",
-                        label: "Lihat Pesanan",
-                        data: "action=viewCart"
-                    }
-                }]
             }
+            // ,
+            // quickReply: {
+            //     items: [{
+            //         type: "action",
+            //         action: {
+            //             type: "postback",
+            //             label: "Lihat Pesanan",
+            //             data: "action=viewCart"
+            //         }
+            //     }]
+            // }
         }
         let contentToAdd = [];
         for (item of produkData.data) {

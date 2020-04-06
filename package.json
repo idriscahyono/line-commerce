@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@line/bot-sdk": "^6.8.3",
+    "@line/bot-sdk": "^6.8.4",
     "axios": "^0.19.2",
     "cloudinary": "^1.20.0",
     "express": "^4.17.1",

@@ -37,6 +37,7 @@ app.post("/webhook", line.middleware(config), function (req, res) {
 
 var produk = (module.exports = {
     handleEvent: async function (event) {
+        console.log(event)
         try {
             await produk.handleUser(event)
             switch (event.type) {
@@ -208,18 +209,17 @@ var produk = (module.exports = {
                 columns: [],
                 imageAspectRatio: 'rectangle',
                 'imageSize': 'cover'
+            },
+            quickReply: {
+                items: [{
+                    type: "action",
+                    action: {
+                        type: "postback",
+                        label: "Lihat Pesanan",
+                        data: "action=viewCart"
+                    }
+                }]
             }
-            // ,
-            // quickReply: {
-            //     items: [{
-            //         type: "action",
-            //         action: {
-            //             type: "postback",
-            //             label: "Lihat Pesanan",
-            //             data: "action=viewCart"
-            //         }
-            //     }]
-            // }
         }
         let contentToAdd = [];
         for (item of produkData.data) {

@@ -45,7 +45,7 @@ var produk = (module.exports = {
                     switch (message.type) {
                         case "text":
                             let echo = await produk.handleMessage(event)
-                            return client.replyMessage(message, event.replyToken, echo)
+                            return client.replyMessage(event.replyToken, echo)
                         case "image":
                             var userState = await userLine.findOne({
                                 userId: event.source.userId

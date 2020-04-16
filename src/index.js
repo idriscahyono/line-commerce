@@ -17,17 +17,17 @@ const config = {
 const client = new line.Client(config);
 const app = express();
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   RajaOngkir.getCities()
-    .then(function(result) {
+    .then(function (result) {
       res.send(result);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error);
     });
 });
 
-app.post("/webhook", line.middleware(config), function(req, res) {
+app.post("/webhook", line.middleware(config), function (req, res) {
   if (!Array.isArray(req.body.events)) {
     return res.status(500).end();
   }
@@ -40,7 +40,7 @@ app.post("/webhook", line.middleware(config), function(req, res) {
 });
 
 var produk = (module.exports = {
-  handleEvent: async function(event) {
+  handleEvent: async function (event) {
     console.log(event);
     try {
       await produk.handleUser(event);
@@ -81,8 +81,8 @@ var produk = (module.exports = {
                 };
                 return client.replyMessage(event.replyToken, echofail);
               }
-            default:
-              throw new Error(`Unkown Message: ${JSON.stringify(message)}`);
+              default:
+                throw new Error(`Unkown Message: ${JSON.stringify(message)}`);
           }
           break;
         case "postback":
@@ -97,7 +97,7 @@ var produk = (module.exports = {
     }
   },
 
-  handleUser: async function(event) {
+  handleUser: async function (event) {
     //mengambil data user line
     let userInfo = await produk.getUserInfo(event.source.userId);
     const userId = userInfo.userId;
@@ -107,13 +107,23 @@ var produk = (module.exports = {
       `https://backend-skripsi.herokuapp.com/userline/${userId}`
     );
     console.log("get data db userLine", userExist.data);
+
+    let setAdmin = await axios.get(
+      "https://backend-skripsi.herokuapp.com/userline/data"
+    );
+    if (setAdmin.data.length == 0) {
+      var isAdmin = true;
+    } else {
+      var isAdmin = false;
+    }
+
     //jika data user kosong, data akan ditambahkan ke db userLine
     if (userExist.data.length == 0) {
       let createUser = await axios.post(
-        "https://backend-skripsi.herokuapp.com/userline",
-        {
+        "https://backend-skripsi.herokuapp.com/userline", {
           userId,
-          username
+          username,
+          isAdmin
         }
       );
       console.log("post data db userLine", createUser.status);
@@ -121,7 +131,7 @@ var produk = (module.exports = {
       console.log("Data " + userId + " ada");
     }
   },
-  getUserInfo: async function(userId) {
+  getUserInfo: async function (userId) {
     try {
       //mengambil data user line
       let userInfo = client.getProfile(userId);
@@ -130,12 +140,11 @@ var produk = (module.exports = {
       console.log(err);
     }
   },
-  updateState: async function(state, userId) {
+  updateState: async function (state, userId) {
     try {
       //update state pada db userLine
       let updateState = await axios.put(
-        `https://backend-skripsi.herokuapp.com/userline/${userId}`,
-        {
+        `https://backend-skripsi.herokuapp.com/userline/${userId}`, {
           state: state
         }
       );
@@ -150,11 +159,17 @@ var produk = (module.exports = {
     }
   },
 
-  handleMessage: async function(event) {
+  handleMessage: async function (event) {
     let echo = "";
     switch (event.message.text) {
       case "menu":
         await produk.updateState("menu", event.source.userId);
+        echo = await produk.handleMenu(event);
+        return echo;
+        break;
+
+      case "hai":
+        await produk.updateState("hai", event.source.userId);
         echo = await produk.handleMenu(event);
         return echo;
         break;
@@ -166,60 +181,103 @@ var produk = (module.exports = {
         break;
     }
   },
-  handleMenu: async function(event) {
+
+  handleMenu: async function (event) {
     let produkData = await axios.get(
       "https://backend-skripsi.herokuapp.com/produk"
     );
     const echo = {
-      type: "template",
+      type: "flex",
       altText: "Daftar Menu",
-      template: {
+      contents: {
         type: "carousel",
-        columns: [],
-        imageAspectRatio: "rectangle",
-        imageSize: "cover"
+        contents: []
       },
       quickReply: {
-        items: [
-          {
-            type: "action",
-            action: {
-              type: "postback",
-              label: "Lihat Pesanan",
-              data: "viewCart"
-            }
+        items: [{
+          type: "action",
+          action: {
+            type: "postback",
+            label: "Lihat Pesanan",
+            data: "viewCart"
           }
-        ]
+        }]
       }
     };
     let contentToAdd = [];
     for (item of produkData.data) {
       let soko = {
-        thumbnailImageUrl: item.image_url,
-        imageBackgroundColor: "#FFFFFF",
-        title: item.nama,
-        text: "Rp." + item.harga.toString(),
-        actions: [
-          {
-            type: "postback",
-            label: "Add To Cart",
-            data: "addToCart_" + item._id
-          }
-        ]
+        type: "bubble",
+        hero: {
+          type: "image",
+          size: "full",
+          aspectRatio: "20:13",
+          aspectMode: "cover",
+          url: item.image_url
+        },
+        body: {
+          type: "box",
+          layout: "vertical",
+          spacing: "sm",
+          contents: [{
+              type: "text",
+              text: item.nama,
+              wrap: true,
+              weight: "bold",
+              size: "xl"
+            },
+            {
+              type: "box",
+              layout: "baseline",
+              flex: 1,
+              contents: [{
+                type: "text",
+                text: "Rp." + item.harga.toString(),
+                wrap: true,
+                size: "sm",
+                flex: 0
+              }]
+            },
+            {
+              type: "text",
+              text: "Stock: " + item.stock.toString(),
+              flex: 0,
+              margin: "md",
+              size: "sm",
+              color: "#AAAAAA",
+              wrap: true
+            }
+          ]
+        },
+        footer: {
+          type: "box",
+          layout: "vertical",
+          spacing: "sm",
+          contents: [{
+            type: "button",
+            style: "primary",
+            color: "#905C44",
+            action: {
+              type: "postback",
+              label: "Add to Cart",
+              data: "addToCart_" + item._id
+            }
+          }]
+        }
       };
       contentToAdd.push(soko);
     }
-    echo.template.columns = contentToAdd;
+    echo.contents.contents = contentToAdd;
     return echo;
   },
-  handleAddToCart: async function(event, query) {
+
+  handleAddToCart: async function (event, query) {
     try {
       let dataProduk = await axios.get(
         `https://backend-skripsi.herokuapp.com/produk/${query}`
       );
       let createPesanan = await axios.post(
-        "https://backend-skripsi.herokuapp.com/pesanan",
-        {
+        "https://backend-skripsi.herokuapp.com/pesanan", {
           userId: event.source.userId,
           nama: dataProduk.data.nama,
           harga: dataProduk.data.harga,
@@ -233,7 +291,7 @@ var produk = (module.exports = {
       console.log(err);
     }
   },
-  handleShowCart: async function(event) {
+  handleShowCart: async function (event) {
     let listPesanan = await axios.get(
       `https://backend-skripsi.herokuapp.com/pesanan/${event.source.userId}`
     );
@@ -251,8 +309,7 @@ var produk = (module.exports = {
         body: {
           type: "box",
           layout: "vertical",
-          contents: [
-            {
+          contents: [{
               type: "text",
               text: "PESANAN",
               weight: "bold",
@@ -288,8 +345,7 @@ var produk = (module.exports = {
         }
       },
       quickReply: {
-        items: [
-          {
+        items: [{
             type: "action",
             action: {
               type: "message",
@@ -320,8 +376,7 @@ var produk = (module.exports = {
       let itemList = {
         type: "box",
         layout: "horizontal",
-        contents: [
-          {
+        contents: [{
             type: "text",
             text: item.nama,
             size: "sm",
@@ -349,8 +404,7 @@ var produk = (module.exports = {
       type: "box",
       layout: "horizontal",
       margin: "xxl",
-      contents: [
-        {
+      contents: [{
           type: "text",
           text: "ITEMS",
           size: "sm",
@@ -368,8 +422,7 @@ var produk = (module.exports = {
     let total = {
       type: "box",
       layout: "horizontal",
-      contents: [
-        {
+      contents: [{
           type: "text",
           text: "TOTAL",
           size: "sm",
@@ -389,7 +442,7 @@ var produk = (module.exports = {
     echo.contents.body.contents[4].contents.push(total);
     return echo;
   },
-  handleEmptyCart: async function(event, query) {
+  handleEmptyCart: async function (event, query) {
     try {
       let deleteAll = await axios.delete(
         `https://backend-skripsi.herokuapp.com/pesanan/${event.source.userId}`
@@ -398,8 +451,7 @@ var produk = (module.exports = {
         type: "text",
         text: "Pesanan Berhasil Dihapus",
         quickReply: {
-          items: [
-            {
+          items: [{
               type: "action",
               action: {
                 type: "message",
@@ -424,7 +476,7 @@ var produk = (module.exports = {
     }
   },
 
-  handleShowCartAdmin: async function(event) {
+  handleShowCartAdmin: async function (event) {
     let listPesanan = await axios.get(
       `https://backend-skripsi.herokuapp.com/pesanan/admin/${event.message.id}`
     );
@@ -443,8 +495,7 @@ var produk = (module.exports = {
         body: {
           type: "box",
           layout: "vertical",
-          contents: [
-            {
+          contents: [{
               type: "text",
               text: "Kode Pesanan: " + event.message.id,
               weight: "bold",
@@ -473,16 +524,14 @@ var produk = (module.exports = {
         }
       },
       quickReply: {
-        items: [
-          {
-            type: "action",
-            action: {
-              type: "message",
-              label: "Lihat Menu",
-              text: "menu"
-            }
+        items: [{
+          type: "action",
+          action: {
+            type: "message",
+            label: "Lihat Menu",
+            text: "menu"
           }
-        ]
+        }]
       }
     };
     let totalHarga = 0;
@@ -490,8 +539,7 @@ var produk = (module.exports = {
       let itemList = {
         type: "box",
         layout: "horizontal",
-        contents: [
-          {
+        contents: [{
             type: "text",
             text: item.nama,
             size: "sm",
@@ -519,8 +567,7 @@ var produk = (module.exports = {
       type: "box",
       layout: "horizontal",
       margin: "xxl",
-      contents: [
-        {
+      contents: [{
           type: "text",
           text: "ITEMS",
           size: "sm",
@@ -538,8 +585,7 @@ var produk = (module.exports = {
     let total = {
       type: "box",
       layout: "horizontal",
-      contents: [
-        {
+      contents: [{
           type: "text",
           text: "TOTAL",
           size: "sm",
@@ -558,17 +604,15 @@ var produk = (module.exports = {
       type: "box",
       layout: "vertical",
       spacing: "sm",
-      contents: [
-        {
-          type: "button",
-          style: "primary",
-          action: {
-            type: "postback",
-            label: "Approve payment",
-            data: "approvePayment_" + event.message.id
-          }
+      contents: [{
+        type: "button",
+        style: "primary",
+        action: {
+          type: "postback",
+          label: "Approve payment",
+          data: "approvePayment_" + event.message.id
         }
-      ]
+      }]
     };
     echo.contents.body.contents[3].contents.push(separator);
     echo.contents.body.contents[3].contents.push(jumlahPesanan);
@@ -577,26 +621,25 @@ var produk = (module.exports = {
     return echo;
   },
 
-  downloadContent: async function(messageId, downloadPath) {
+  downloadContent: async function (messageId, downloadPath) {
     return client.getMessageContent(messageId).then(
       stream =>
-        new Promise((resolve, reject) => {
-          var streamCloudinary = cloudinary.v2.uploader.upload_stream(
-            {
-              public_id: "produk_data/" + messageId
-            },
-            function(eror, result) {
-              if (!eror) {
-                resolve(result);
-              }
+      new Promise((resolve, reject) => {
+        var streamCloudinary = cloudinary.v2.uploader.upload_stream({
+            public_id: "produk_data/" + messageId
+          },
+          function (eror, result) {
+            if (!eror) {
+              resolve(result);
             }
-          );
-          stream.pipe(streamCloudinary);
-          stream.on("error", reject);
-        })
+          }
+        );
+        stream.pipe(streamCloudinary);
+        stream.on("error", reject);
+      })
     );
   },
-  handleImage: async function(message, replyToken, event) {
+  handleImage: async function (message, replyToken, event) {
     const downloadPath = path.join(
       __dirname,
       "downloaded",
@@ -605,38 +648,33 @@ var produk = (module.exports = {
     await produk.updateState("paymentProof", event.source.id);
     let uploadData = await produk.downloadContent(messageId, downloadPath);
     let updatePesanan = await axios.put(
-      `https://backend-skripsi.herokuapp.com/pesanan/byuserid/${event.source.userId}`,
-      {
+      `https://backend-skripsi.herokuapp.com/pesanan/byuserid/${event.source.userId}`, {
         userBayar: true,
         nomorBayar: message.id
       }
     );
     let echo = {
       type: "text",
-      text:
-        "Terimakasih Telah Upload Bukti Pembayaran, Nomor Pembayaran:" +
+      text: "Terimakasih Telah Upload Bukti Pembayaran, Nomor Pembayaran:" +
         message.id +
         "Pembayaran & Pesanan Anda Sedang Diperiksa Oleh Admin",
       quickReply: {
-        items: [
-          {
-            type: "action",
-            action: {
-              type: "message",
-              label: "Lihat Menu",
-              text: "menu"
-            }
+        items: [{
+          type: "action",
+          action: {
+            type: "message",
+            label: "Lihat Menu",
+            text: "menu"
           }
-        ]
+        }]
       }
     };
     return echo;
   },
 
-  handleApprovePayment: async function(event, query) {
+  handleApprovePayment: async function (event, query) {
     let updatePesanan = await axios.put(
-      `https://backend-skripsi.herokuapp.com/pesanan/${query.idPesanan}`,
-      {
+      `https://backend-skripsi.herokuapp.com/pesanan/${query.idPesanan}`, {
         adminBayar: true
       }
     );
@@ -646,27 +684,24 @@ var produk = (module.exports = {
     let idToNotify = userToNotify.data.userId;
     let echo = {
       type: "text",
-      text:
-        "Pesanan dengan nomor " +
+      text: "Pesanan dengan nomor " +
         query.idPesanan +
         "telah diverifikasi oleh admin",
       quickReply: {
-        items: [
-          {
-            type: "action",
-            action: {
-              type: "message",
-              label: "Lihat Menu",
-              text: "menu"
-            }
+        items: [{
+          type: "action",
+          action: {
+            type: "message",
+            label: "Lihat Menu",
+            text: "menu"
           }
-        ]
+        }]
       }
     };
     return client.pushMessage(idToNotify, echo);
   },
 
-  handlePostback: async function(event) {
+  handlePostback: async function (event) {
     let postbackData = event.postback.data.split("_", 2);
     let mode = postbackData[0];
     let query = postbackData[1];

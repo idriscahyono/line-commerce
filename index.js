@@ -1,9 +1,10 @@
-const line = require("@line/bot-sdk");
-const express = require("express");
-const axios = require("axios");
+const line = require('@line/bot-sdk');
+const express = require('express');
+const axios = require('axios');
 const cp = require('child_process');
 const fs = require('fs');
-const path = require("path");
+const url = require('url');
+const path = require('path');
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || defaultAccessToken,
   channelSecret: process.env.CHANNEL_SECRET || defaultSecret
@@ -12,11 +13,10 @@ const config = {
 const client = new line.Client(config);
 const app = express();
 let baseURL = process.env.BASE_URL;
-console.log(baseURL)
-let RajaOngkir = require("rajaongkir-nodejs").Starter(process.env.RAJA_ONGKIR);
+const RajaOngkir = require('rajaongkir-nodejs').Starter(process.env.RAJA_ONGKIR);
 
 app.use('/downloaded', express.static('downloaded'));
-app.get("/", function (req, res) {
+app.get('/', function (req, res) {
   RajaOngkir.getCities()
     .then(function (result) {
       res.send(result);
@@ -26,16 +26,14 @@ app.get("/", function (req, res) {
     });
 });
 
-app.post("/webhook", line.middleware(config), function (req, res) {
+app.post('/webhook', line.middleware(config), function (req, res) {
   if (!Array.isArray(req.body.events)) {
     return res.status(500).end();
   }
-  Promise.all(req.body.events.map(produk.handleEvent))
-    .then(result => res.json(result))
-    .catch(err => {
-      console.error(err);
-      res.status(500).end();
-    });
+  Promise.all(req.body.events.map(produk.handleEvent)).then((result) => res.json(result)).catch((err) => {
+    console.error(err);
+    res.status(500).end();
+  });
 });
 
 var produk = (module.exports = {

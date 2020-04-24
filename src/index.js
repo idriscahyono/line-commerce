@@ -11,9 +11,9 @@ const config = {
 
 const client = new line.Client(config);
 const app = express();
-const baseURL = process.env.BASE_URL;
+let baseURL = process.env.BASE_URL;
 console.log(baseURL)
-const RajaOngkir = require("rajaongkir-nodejs").Starter(process.env.RAJA_ONGKIR);
+let RajaOngkir = require("rajaongkir-nodejs").Starter(process.env.RAJA_ONGKIR);
 
 app.get("/", function (req, res) {
   RajaOngkir.getCities()

@@ -12,7 +12,7 @@ const config = {
 
 const client = new line.Client(config);
 const app = express();
-let baseURL = process.env.BASE_URL;
+let baseURL = 'https://jualan-backend.herokuapp.com/';
 const RajaOngkir = require('rajaongkir-nodejs').Starter(process.env.RAJA_ONGKIR);
 
 app.use('/downloaded', express.static('downloaded'));

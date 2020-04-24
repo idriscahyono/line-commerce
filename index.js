@@ -3,7 +3,6 @@ const express = require('express');
 const axios = require('axios');
 const cp = require('child_process');
 const fs = require('fs');
-const url = require('url');
 const path = require('path');
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || defaultAccessToken,
@@ -12,7 +11,7 @@ const config = {
 
 const client = new line.Client(config);
 const app = express();
-let baseURL = 'https://jualan-backend.herokuapp.com/';
+let baseURL = process.env.BASE_URL;
 const RajaOngkir = require('rajaongkir-nodejs').Starter(process.env.RAJA_ONGKIR);
 
 app.use('/downloaded', express.static('downloaded'));

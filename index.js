@@ -15,6 +15,7 @@ let baseURL = process.env.BASE_URL;
 console.log(baseURL)
 let RajaOngkir = require("rajaongkir-nodejs").Starter(process.env.RAJA_ONGKIR);
 
+app.use('/downloaded', express.static('downloaded'));
 app.get("/", function (req, res) {
   RajaOngkir.getCities()
     .then(function (result) {

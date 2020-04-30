@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@line/bot-sdk": "^6.8.4",
+    "@mapbox/mapbox-sdk": "^0.10.0",
     "axios": "^0.19.2",
     "cloudinary": "^1.20.0",
     "cp": "^0.2.0",

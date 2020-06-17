@@ -209,7 +209,7 @@ var produk = (module.exports = {
 
 			default:
 				await produk.updateState('menu', event.source.userId);
-				echo = await produk.handleMenu(event);
+				echo = await produk.handleJenis(event);
 				return echo;
 				break;
 		}

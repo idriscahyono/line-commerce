@@ -494,14 +494,16 @@ var produk = (module.exports = {
 						size: 'sm',
 						color: '#2f2f2f',
 						wrap: true,
-						flex: 0
+						flex: 1
 					},
 					{
 						type: 'text',
 						text: 'Rp.' + item.harga.toString(),
 						size: 'sm',
 						color: '#000000',
-						align: 'end'
+						align: 'end',
+						wrap: true,
+						flex: 1
 					}
 				]
 			};
@@ -749,14 +751,16 @@ var produk = (module.exports = {
 						size: 'sm',
 						color: '#2f2f2f',
 						wrap: true,
-						flex: 0
+						flex: 1
 					},
 					{
 						type: 'text',
 						text: 'Rp.' + item.harga.toString(),
 						size: 'sm',
 						color: '#000000',
-						align: 'end'
+						align: 'end',
+						wrap: true,
+						flex: 1
 					}
 				]
 			};
@@ -994,14 +998,16 @@ var produk = (module.exports = {
 						size: 'sm',
 						color: '#2f2f2f',
 						wrap: true,
-						flex: 0
+						flex: 1
 					},
 					{
 						type: 'text',
 						text: 'Rp' + item.harga.toString(),
 						size: 'sm',
 						color: '#000000',
-						align: 'end'
+						align: 'end',
+						wrap: true,
+						flex: 1
 					}
 				]
 			};

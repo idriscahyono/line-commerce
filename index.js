@@ -494,7 +494,7 @@ var produk = (module.exports = {
 						size: 'sm',
 						color: '#2f2f2f',
 						wrap: true,
-						flex: 1
+						flex: 2
 					},
 					{
 						type: 'text',
@@ -751,7 +751,7 @@ var produk = (module.exports = {
 						size: 'sm',
 						color: '#2f2f2f',
 						wrap: true,
-						flex: 1
+						flex: 2
 					},
 					{
 						type: 'text',
@@ -998,7 +998,7 @@ var produk = (module.exports = {
 						size: 'sm',
 						color: '#2f2f2f',
 						wrap: true,
-						flex: 1
+						flex: 2
 					},
 					{
 						type: 'text',
@@ -1549,7 +1549,7 @@ var produk = (module.exports = {
 		let query = postbackData[1];
 		console.log(mode);
 		console.log(query);
-		console.log('State => ' + current.state);
+		console.log('State Sebelumnya => ' + current.state);
 		let echo = '';
 		switch (mode) {
 			case 'lihatJenis':
